@@ -1,6 +1,55 @@
+body {
+  background-color: #24272e;
+  font-family: 'Asap', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .container {
   text-align: center;
 }
-.header {
+header {
+  background-color: #eee;
+  font-family: 'Asap', sans-serif;
   text-align: center;
+  padding: 1.1em;
+}
+header h1 {
+  color: #24272e;
+}
+
+.content {
+  text-align: center;
+}
+
+.score-board {
+  margin: 1.2em auto;
+  padding: 15px 20px;
+  border:  3px solid #fff;
+  width: 250px;
+  color: #fff;
+  font-size: 2em;
+  border-radius: .2em;
+  position: relative;
+}
+.badge {
+  background-color: #e2584D;
+  color: #fff;
+  font-size: 1.1rem;
+  padding: 5px 14px;
+  border-radius: 3px;
+}
+#user-label, #comp-label {
+  position: absolute;
+  top: 30%;
+}
+#user-label {
+  left: -30px;
+}
+#comp-label {
+  right: -30px;
 }
