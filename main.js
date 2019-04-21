@@ -30,20 +30,29 @@ const convertToWord = (choice) => {
 const win = (user, computer) => {
   userScore++;
   userScore_span.innerHTML = userScore;
-  const msg = convertToWord(user) + ' beats ' + convertToWord(computer) + ' ! You WON';
+  const msg = `${convertToWord(user)} beats ${convertToWord(computer)}! You Win!`;
   showMessage(msg);
+
+  document.getElementById(user).classList.add('win');
+  setTimeout(() => document.getElementById(user).classList.remove('win'), 300);
 }
 
 const lose = (user, computer) => {
   compScore++;
   compScore_span.innerHTML = compScore;
-  const msg = convertToWord(user) + ' lost ' + convertToWord(computer) + ' ! You LOSE';
+  const msg = `${convertToWord(user)} loses to ${convertToWord(computer)}! You Lose!`;
   showMessage(msg);
+
+  document.getElementById(user).classList.add('lose');
+  setTimeout(() => document.getElementById(user).classList.remove('lose'), 300);
 }
 
 const draw = (user, computer) => {
-  msg = convertToWord(user) + ' and ' + convertToWord(computer) + ' ! Its DRAW!'
+  msg = `${convertToWord(user)} and ${convertToWord(computer)}! It's a Draw! `;
   showMessage(msg);
+
+  document.getElementById(user).classList.add('draw');
+  setTimeout(() => document.getElementById(user).classList.remove('draw'), 300);
 }
 
 
@@ -69,26 +78,14 @@ const game = (userChoice) => {
     case 'ss':
       draw(userChoice, computerChoice);
       break;
-
-
   }
-
 }
 
 const main = () => {
-  rock_div.addEventListener('click', () => {
-    game('r');
-  });
-
-  paper_div.addEventListener('click', () => {
-    game('p');
-  });
-
-  scissors_div.addEventListener('click', () => {
-    game('s');
-  });
+  rock_div.addEventListener('click', () => game('r'));
+  paper_div.addEventListener('click', () => game('p'));
+  scissors_div.addEventListener('click', () => game('s'));
 }
 
+// Call the entry function
 main();
-
-
