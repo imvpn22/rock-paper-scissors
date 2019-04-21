@@ -39,7 +39,30 @@
       </div>
 
       <div id="action-msg" class="action-msg">
-        Make your move
+        Moves left:  <span id="moves-left"></span>
+      </div>
+
+      <div id="init-game" class="init-game-cont ">
+        <div id="new-game" class="init-game ">
+          <h2>New Game</h2>
+          <div class="moves">
+            <h4>Select moves for a game</h4>
+            <button class="move move-selected">5</button>
+            <button class="move">10</button>
+            <button class="move">20</button>
+          </div>
+          <button class="game-btn" id="start-game">Start</button>
+        </div>
+
+        <div id="game-over" class="init-game hidden">
+          <h2>Game Over</h2>
+          <i id="result-icon" class="fas fa-handshake"></i>
+          <div id="game-result">
+            You didn't played any game
+          </div>
+          <button class="game-btn" id="play-again">Play Again</button>
+        </div>
+
       </div>
 
     </div>
@@ -48,8 +71,7 @@
       <a href="https://youtu.be/jaVNP3nIAv0" target="_blank"> Reference </a> |
       <a href="https://github.com/imvpn22/rock-paper-scissors" target="_blank"> Code </a>
     </footer>
-  </div>
-  <script src="main.js"></script>
-</body>
+    <script src="main.js"></script>
+  </body>
 
-</html>
+  </html>

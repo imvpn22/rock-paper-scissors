@@ -1,5 +1,9 @@
 let userScore = 0;
 let compScore = 0;
+let drawScore = 0;
+
+let movesLeft = 10;
+
 
 const userScore_span = document.getElementById('user-score');
 const compScore_span = document.getElementById('comp-score');
@@ -8,7 +12,15 @@ const result_div = document.getElementById('result');
 const rock_div = document.getElementById('r');
 const paper_div = document.getElementById('p');
 const scissors_div = document.getElementById('s');
+const actionMsg_div = document.getElementById('action-msg');
+const movesLeft_span = document.getElementById('moves-left');
 
+const gameInit_div = document.getElementById('init-game');
+const newGame_div = document.getElementById('new-game');
+const gameOver_div = document.getElementById('game-over');
+const playAgain_btn = document.getElementById('play-again');
+const gameResult_div = document.getElementById('game-result');
+const gameResult_icon = document.getElementById('result-icon');;
 
 const getComputerChoice = () => {
   const choices = ['r', 'p', 's'];
@@ -59,32 +71,100 @@ const draw = (user, computer) => {
 const game = (userChoice) => {
   const computerChoice = getComputerChoice();
 
-  // Game logic
-  switch (userChoice + computerChoice) {
-    case 'rs':
-    case 'sp':
-    case 'pr':
+  if (movesLeft-1 > 0) {
+    movesLeft--;
+    actionMsg_div.innerHTML = `Moves Left: ${movesLeft}`;
+
+    // Game logic
+    switch (userChoice + computerChoice) {
+      case 'rs':
+      case 'sp':
+      case 'pr':
       win(userChoice, computerChoice);
       break;
 
-    case 'rp':
-    case 'ps':
-    case 'sr':
+      case 'rp':
+      case 'ps':
+      case 'sr':
       lose(userChoice, computerChoice);
       break;
 
-    case 'rr':
-    case 'pp':
-    case 'ss':
+      case 'rr':
+      case 'pp':
+      case 'ss':
       draw(userChoice, computerChoice);
       break;
+    }
+  } else {
+    actionMsg_div.innerHTML = 'Game Over!';
+    // Check if Game is over
+    gameInit_div.classList.remove('hidden');
+    gameOver_div.classList.remove('hidden');
+    overGame();
+  }
+}
+
+initiateGame = () => {
+  userScore = 0;
+  compScore = 0;
+  drawScore = 0;
+  movesLeft = 5;
+
+  newGame_div.classList.remove('hidden');
+  gameOver_div.classList.add('hidden');
+  actionMsg_div.innerHTML = `Moves Left: ${movesLeft}`;
+
+  userScore_span.innerHTML = 0;
+  compScore_span.innerHTML = 0;
+
+  let moveIndex = 0;
+  const moveButtons = document.querySelectorAll('.move');
+  moveButtons.forEach((move, idx) => {
+    move.addEventListener('click', () => {
+      movesLeft = move.innerHTML;
+      move.classList.add('move-selected');
+      actionMsg_div.innerHTML = `Moves Left: ${movesLeft}`;
+
+      if (moveIndex !== idx) {
+        moveButtons[moveIndex].classList.remove('move-selected');
+        moveIndex = idx;
+      }
+    })
+  });
+
+  document.getElementById('start-game').addEventListener('click', () => {
+    gameInit_div.classList.add('hidden');
+    newGame_div.classList.add('hidden');
+  })
+}
+
+overGame = () => {
+  if (userScore > compScore) {
+    gameResult_div.innerHTML = `You beat computer by ${userScore} : ${compScore}`;
+    gameOver_div.classList.add('game-won');
+    gameResult_icon.classList.remove('fa-thumbs-down', 'fa-hand-shake').add('fa-thumbs-up');
+  } else if (userScore > compScore) {
+    gameResult_div.innerHTML = `You beat computer by ${userScore} : ${compScore}`;
+    gameOver_div.classList.add('game-lost');
+    gameResult_icon.classList.remove('fa-thumbs-up', 'fa-hand-shake').add('fa-thumbs-down');
+  } else {
+    gameResult_div.innerHTML = `Game draw by ${userScore} : ${compScore}`;
+    gameResult_icon.classList.remove('fa-thumbs-up', 'fa-thumbs-up').add('fa-handshake');
   }
 }
 
 const main = () => {
+
+  initiateGame();
   rock_div.addEventListener('click', () => game('r'));
   paper_div.addEventListener('click', () => game('p'));
   scissors_div.addEventListener('click', () => game('s'));
+
+  playAgain_btn.addEventListener('click', () => {
+    initiateGame();
+    gameOver_div.classList.remove('game-won', 'game-lost');
+  });
+
 }
 
 // Call the entry function

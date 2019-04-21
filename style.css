@@ -62,7 +62,7 @@ header h1 {
 }
 
 .result {
-  font-size: 1.9rem;
+  font-size: 1.5rem;
   color: #ddd;
   font-weight: 800;
   padding: .3rem;
@@ -100,15 +100,17 @@ header h1 {
 
 .action-msg {
   font-weight: bold;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 .win {
+  /* background-color: #4dcc7d; */
   border-color: #4dcc7d !important;
   box-shadow: 0 0 10px 0 #31b43A;
 }
 
 .lose {
+  /* background-color: #fc121b; */
   border-color: #fc121b !important;
   box-shadow: 0 0 10px 0 #d01115;
 }
@@ -136,4 +138,96 @@ footer a {
 footer a:hover {
   text-decoration: underline;
   color: #fff !important;
+}
+
+.init-game-cont {
+  background-color: rgba(0, 0, 0, 0.95);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.init-game {
+  /* height: 300px; */
+  width: 90%;
+  min-width: 300px;
+  max-width: 500px;
+  background: #1f2227;
+  border-radius: 5px;
+  padding: 2rem 0.5rem;
+}
+.moves {
+  margin: 1rem auto;
+}
+.move {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+  border: 2px solid #ddd;
+  background-color: rgba(0, 0, 0, 0);
+  color: #ddd;
+  margin: 1.1em .8rem;
+  font-size: 1.4rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+.move:hover, .move:active {
+  background-color: #ddd;
+  color: #333;
+}
+
+.move-selected {
+  background-color: #ddd;
+  color: #333;
+  box-shadow: 0 0 7px 0 #fff;
+}
+
+.game-btn {
+  border: none;
+  margin: 1rem 0;
+  padding: 10px 22px;
+  border-radius: 100px;
+  font-size: 1.2rem;
+  background: #e2584d;
+  color: white;
+  font-family: monospace;
+  cursor: pointer;
+  /* box-shadow: 1px 2px 10px 0px #4e4e4e; */
+  transition: all .3s ease-in-out;
+}
+.game-btn:hover {
+  box-shadow: 0px 0px 2px 0px #4e4e4e;
+}
+.hidden {
+  display: none;
+}
+#play-again {
+  background-color: #31a7ab;
+}
+
+.game-won {
+  /* border-left: 10px solid #237b23; */
+  /* color: #24272e; */
+  /* background: #7fca7f; */
+  /* background-color: #c5c5c5; */
+
+}
+.game-lost {
+  background-color: #fc121b;
+}
+#game-result {
+  margin: .7rem 0;
+  font-size: 1.1rem;
+}
+#result-icon {
+  font-size: 3rem;
+  color: #31a7ab;
+  margin: 1.1rem 0;
 }
