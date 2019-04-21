@@ -102,3 +102,19 @@ header h1 {
   font-weight: bold;
   font-size: 1.3rem;
 }
+
+.win {
+  border-color: #4dcc7d !important;
+  box-shadow: 0 0 10px 0 #31b43A;
+}
+
+.lose {
+  border-color: #fc121b !important;
+  box-shadow: 0 0 10px 0 #d01115;
+}
+
+.draw {
+  border-color: #464647 !important;
+  box-shadow: 0 0 10px 0 #333;
+}
+
