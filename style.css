@@ -191,6 +191,7 @@ footer a:hover {
 
 .game-btn {
   border: none;
+  outline: none;
   margin: 1rem 0;
   padding: 10px 22px;
   border-radius: 100px;
@@ -220,7 +221,7 @@ footer a:hover {
 
 }
 .game-lost {
-  background-color: #fc121b;
+  /* background-color: #fc121b; */
 }
 #game-result {
   margin: .7rem 0;

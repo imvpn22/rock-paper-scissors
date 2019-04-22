@@ -1,6 +1,7 @@
 let userScore = 0;
 let compScore = 0;
 let drawScore = 0;
+let moveIndex = 0;
 
 let movesLeft = 10;
 
@@ -19,6 +20,7 @@ const gameInit_div = document.getElementById('init-game');
 const newGame_div = document.getElementById('new-game');
 const gameOver_div = document.getElementById('game-over');
 const playAgain_btn = document.getElementById('play-again');
+const startGame_btn = document.getElementById('start-game');
 const gameResult_div = document.getElementById('game-result');
 const gameResult_icon = document.getElementById('result-icon');;
 
@@ -108,16 +110,44 @@ initiateGame = () => {
   userScore = 0;
   compScore = 0;
   drawScore = 0;
-  movesLeft = 5;
 
   newGame_div.classList.remove('hidden');
   gameOver_div.classList.add('hidden');
-  actionMsg_div.innerHTML = `Moves Left: ${movesLeft}`;
 
   userScore_span.innerHTML = 0;
   compScore_span.innerHTML = 0;
 
-  let moveIndex = 0;
+  movesLeft = document.querySelector('.move-selected').innerHTML;
+  actionMsg_div.innerHTML = `Moves Left: ${movesLeft}`;
+
+
+}
+
+overGame = () => {
+  if (userScore > compScore) {
+    gameResult_div.innerHTML = `You beat computer by ${userScore} : ${compScore}`;
+    gameOver_div.classList.add('game-won');
+    gameResult_icon.classList.remove('fa-thumbs-down', 'fa-handshake');
+    gameResult_icon.classList.add('fa-thumbs-up');
+  } else if (compScore > userScore ) {
+    gameResult_div.innerHTML = `You lost to computer by ${userScore} : ${compScore}`;
+    gameOver_div.classList.add('game-lost');
+    gameResult_icon.classList.remove('fa-thumbs-up', 'fa-handshake');
+    gameResult_icon.classList.add('fa-thumbs-down')
+  } else {
+    gameResult_div.innerHTML = `Game draw by ${userScore} : ${compScore}`;
+    gameResult_icon.classList.remove('fa-thumbs-up', 'fa-thumbs-down');
+    gameResult_icon.classList.add('fa-handshake');
+  }
+}
+
+const main = () => {
+
+  initiateGame();
+  rock_div.addEventListener('click', () => game('r'));
+  paper_div.addEventListener('click', () => game('p'));
+  scissors_div.addEventListener('click', () => game('s'));
+
   const moveButtons = document.querySelectorAll('.move');
   moveButtons.forEach((move, idx) => {
     move.addEventListener('click', () => {
@@ -132,33 +162,10 @@ initiateGame = () => {
     })
   });
 
-  document.getElementById('start-game').addEventListener('click', () => {
+  startGame_btn.addEventListener('click', () => {
     gameInit_div.classList.add('hidden');
     newGame_div.classList.add('hidden');
-  })
-}
-
-overGame = () => {
-  if (userScore > compScore) {
-    gameResult_div.innerHTML = `You beat computer by ${userScore} : ${compScore}`;
-    gameOver_div.classList.add('game-won');
-    gameResult_icon.classList.remove('fa-thumbs-down', 'fa-hand-shake').add('fa-thumbs-up');
-  } else if (userScore > compScore) {
-    gameResult_div.innerHTML = `You beat computer by ${userScore} : ${compScore}`;
-    gameOver_div.classList.add('game-lost');
-    gameResult_icon.classList.remove('fa-thumbs-up', 'fa-hand-shake').add('fa-thumbs-down');
-  } else {
-    gameResult_div.innerHTML = `Game draw by ${userScore} : ${compScore}`;
-    gameResult_icon.classList.remove('fa-thumbs-up', 'fa-thumbs-up').add('fa-handshake');
-  }
-}
-
-const main = () => {
-
-  initiateGame();
-  rock_div.addEventListener('click', () => game('r'));
-  paper_div.addEventListener('click', () => game('p'));
-  scissors_div.addEventListener('click', () => game('s'));
+  });
 
   playAgain_btn.addEventListener('click', () => {
     initiateGame();
